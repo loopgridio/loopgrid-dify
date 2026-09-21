@@ -2,6 +2,8 @@ version: 0.1.0
 type: plugin
 author: loopgridio
 name: loopgrid
+repo: https://github.com/loopgridio/loopgrid-dify
+contact: hello@loopgrid.io
 label:
   en_US: LoopGrid
 description:
