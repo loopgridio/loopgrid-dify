@@ -1,0 +1,57 @@
+identity:
+  name: loopgrid_submit_review
+  author: loopgridio
+  label:
+    en_US: Submit Review
+description:
+  human:
+    en_US: Record an explicit human approve/reject decision for evidence already awaiting human review.
+  llm: Record an explicit human review. Do not invent a reviewer or approval.
+parameters:
+
+  - name: decision_id
+    type: string
+    required: true
+    label:
+      en_US: Decision ID
+    human_description:
+      en_US: LoopGrid decision identifier.
+    llm_description: LoopGrid decision ID returned by Record Decision.
+    form: llm
+  - name: action
+    type: select
+    required: true
+    default: approve
+    options:
+      - value: approve
+        label:
+          en_US: Approve
+      - value: reject
+        label:
+          en_US: Reject
+    label:
+      en_US: Review Action
+    human_description:
+      en_US: Human review result. The decision must already be awaiting human approval.
+    form: form
+  - name: reviewer
+    type: string
+    required: true
+    label:
+      en_US: Reviewer
+    human_description:
+      en_US: Human reviewer identity to record in evidence.
+    llm_description: Human reviewer identity supplied by the workflow operator.
+    form: form
+  - name: reason
+    type: string
+    required: false
+    label:
+      en_US: Reason
+    human_description:
+      en_US: Optional human review reason.
+    llm_description: Optional reason for the human review decision.
+    form: form
+extra:
+  python:
+    source: tools/submit_review.py

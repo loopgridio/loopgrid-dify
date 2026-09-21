@@ -1,0 +1,23 @@
+identity:
+  name: loopgrid_verify_decision
+  author: loopgridio
+  label:
+    en_US: Verify Decision
+description:
+  human:
+    en_US: Ask the connected LoopGrid service to cryptographically verify the decision chain.
+  llm: Verify integrity of a LoopGrid decision using the connected service. This is not independent offline verification.
+parameters:
+
+  - name: decision_id
+    type: string
+    required: true
+    label:
+      en_US: Decision ID
+    human_description:
+      en_US: LoopGrid decision identifier.
+    llm_description: LoopGrid decision ID returned by Record Decision.
+    form: llm
+extra:
+  python:
+    source: tools/verify_decision.py

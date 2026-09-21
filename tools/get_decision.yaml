@@ -1,0 +1,23 @@
+identity:
+  name: loopgrid_get_decision
+  author: loopgridio
+  label:
+    en_US: Get Decision
+description:
+  human:
+    en_US: Retrieve a LoopGrid decision, its signed events, verification summary, and evidence coverage.
+  llm: Retrieve the current evidence record for a LoopGrid decision.
+parameters:
+
+  - name: decision_id
+    type: string
+    required: true
+    label:
+      en_US: Decision ID
+    human_description:
+      en_US: LoopGrid decision identifier.
+    llm_description: LoopGrid decision ID returned by Record Decision.
+    form: llm
+extra:
+  python:
+    source: tools/get_decision.py

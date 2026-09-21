@@ -1,0 +1,44 @@
+identity:
+  author: loopgridio
+  name: loopgrid
+  label:
+    en_US: LoopGrid
+  description:
+    en_US: Evidence infrastructure for consequential AI-agent decisions.
+  icon: icon.svg
+credentials_for_provider:
+  base_url:
+    type: text-input
+    required: true
+    label:
+      en_US: LoopGrid Base URL
+    placeholder:
+      en_US: https://your-loopgrid.example.com
+    help:
+      en_US: HTTPS is recommended. Self-hosted endpoints are supported.
+  workspace_id:
+    type: text-input
+    required: true
+    label:
+      en_US: Workspace ID
+    placeholder:
+      en_US: default
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: LoopGrid API Key
+    placeholder:
+      en_US: Service key with the scopes required by your workflow
+    help:
+      en_US: For all six tools, use ingest, read, and review scopes. Prefer least privilege.
+tools:
+  - tools/record_decision.yaml
+  - tools/record_action.yaml
+  - tools/record_outcome.yaml
+  - tools/submit_review.yaml
+  - tools/get_decision.yaml
+  - tools/verify_decision.yaml
+extra:
+  python:
+    source: provider/loopgrid.py

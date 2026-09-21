@@ -1,0 +1,131 @@
+identity:
+  name: loopgrid_record_decision
+  author: loopgridio
+  label:
+    en_US: Record Decision
+description:
+  human:
+    en_US: Record signed evidence for a proposed AI-agent decision. This does not execute the action.
+  llm: Record LoopGrid evidence for a consequential decision without executing the proposed business action.
+parameters:
+  - name: decision_type
+    type: string
+    required: true
+    default: agent_decision
+    label:
+      en_US: Decision Type
+    human_description:
+      en_US: Stable category for the consequential decision.
+    llm_description: Stable category such as customer_refund or account_change.
+    form: llm
+  - name: proposed_action_json
+    type: string
+    required: true
+    default: "{}"
+    label:
+      en_US: Proposed Action JSON
+    human_description:
+      en_US: JSON object describing the proposed action. LoopGrid records it but does not execute it.
+    llm_description: A JSON object describing the proposed external action.
+    form: llm
+  - name: agent_json
+    type: string
+    required: false
+    default: '{"id":"dify-agent"}'
+    label:
+      en_US: Agent JSON
+    human_description:
+      en_US: JSON object identifying the agent/version.
+    llm_description: JSON object identifying the agent.
+    form: llm
+  - name: service_name
+    type: string
+    required: false
+    default: dify
+    label:
+      en_US: Service Name
+    human_description:
+      en_US: Service or workflow name.
+    llm_description: Service or workflow name.
+    form: llm
+  - name: privacy_mode
+    type: select
+    required: true
+    default: redacted
+    options:
+      - value: redacted
+        label:
+          en_US: Redacted
+      - value: proof_only
+        label:
+          en_US: Proof Only
+      - value: full
+        label:
+          en_US: Full
+    label:
+      en_US: Privacy Mode
+    human_description:
+      en_US: Capture mode for this decision. Redacted is the default.
+    form: form
+  - name: authority_json
+    type: string
+    required: false
+    default: "{}"
+    label:
+      en_US: Authority JSON
+    human_description:
+      en_US: Optional delegated-authority evidence as JSON.
+    llm_description: JSON object describing delegated authority.
+    form: llm
+  - name: model_json
+    type: string
+    required: false
+    default: "{}"
+    label:
+      en_US: Model JSON
+    human_description:
+      en_US: Optional model/provider evidence as JSON.
+    llm_description: JSON object identifying model and provider.
+    form: llm
+  - name: context_json
+    type: string
+    required: false
+    default: "{}"
+    label:
+      en_US: Context JSON
+    human_description:
+      en_US: Optional selected workflow context as JSON.
+    llm_description: JSON object with intentionally selected decision context.
+    form: llm
+  - name: input_json
+    type: string
+    required: false
+    default: "{}"
+    label:
+      en_US: Input Evidence JSON
+    human_description:
+      en_US: Only include input data intentionally selected for evidence capture.
+    llm_description: JSON object containing explicitly selected input evidence.
+    form: llm
+  - name: metadata_json
+    type: string
+    required: false
+    default: "{}"
+    label:
+      en_US: Metadata JSON
+    human_description:
+      en_US: Optional metadata as JSON.
+    llm_description: Optional metadata JSON object.
+    form: llm
+  - name: idempotency_key
+    type: string
+    required: false
+    label:
+      en_US: Idempotency Key
+    human_description:
+      en_US: Stable key to prevent duplicate evidence on workflow retries.
+    llm_description: Stable idempotency key when available.
+    form: llm
+extra:
+  python:
+    source: tools/record_decision.py

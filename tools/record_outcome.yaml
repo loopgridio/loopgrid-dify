@@ -1,0 +1,81 @@
+identity:
+  name: loopgrid_record_outcome
+  author: loopgridio
+  label:
+    en_US: Record Outcome
+description:
+  human:
+    en_US: Record an observed downstream outcome for a LoopGrid decision.
+  llm: Record evidence for an observed downstream outcome.
+parameters:
+
+  - name: decision_id
+    type: string
+    required: true
+    label:
+      en_US: Decision ID
+    human_description:
+      en_US: LoopGrid decision identifier.
+    llm_description: LoopGrid decision ID returned by Record Decision.
+    form: llm
+  - name: status
+    type: string
+    required: true
+    default: succeeded
+    label:
+      en_US: Status
+    human_description:
+      en_US: Observed downstream outcome status.
+    llm_description: Outcome status such as succeeded, failed, settled, or reversed.
+    form: llm
+  - name: verified_against
+    type: string
+    required: true
+    default: external-system
+    label:
+      en_US: Verified Against
+    human_description:
+      en_US: Source used to observe/verify the outcome.
+    llm_description: External source used to observe the outcome.
+    form: llm
+  - name: external_reference
+    type: string
+    required: false
+    label:
+      en_US: External Reference
+    human_description:
+      en_US: Optional external transaction/job/reference identifier.
+    llm_description: External reference associated with the outcome.
+    form: llm
+  - name: actor_id
+    type: string
+    required: false
+    default: dify
+    label:
+      en_US: Actor ID
+    human_description:
+      en_US: Integration/system that observed the outcome.
+    llm_description: Identifier of the integration that observed the outcome.
+    form: llm
+  - name: details_json
+    type: string
+    required: false
+    default: "{}"
+    label:
+      en_US: Details JSON
+    human_description:
+      en_US: Optional selected outcome evidence as JSON.
+    llm_description: Optional JSON object with outcome evidence.
+    form: llm
+  - name: idempotency_key
+    type: string
+    required: false
+    label:
+      en_US: Idempotency Key
+    human_description:
+      en_US: Stable key to prevent duplicate evidence on retries.
+    llm_description: Stable idempotency key when available.
+    form: llm
+extra:
+  python:
+    source: tools/record_outcome.py

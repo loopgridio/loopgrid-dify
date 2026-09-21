@@ -1,0 +1,13 @@
+[project]
+name = "loopgrid-dify-plugin"
+version = "0.1.0"
+description = "LoopGrid Tool Plugin for Dify"
+requires-python = ">=3.12"
+dependencies = [
+  "dify-plugin>=0.9.0,<0.11.0",
+  "requests>=2.33.1,<3.0.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
