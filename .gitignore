@@ -6,3 +6,5 @@ __pycache__/
 *.difypkg
 .pytest_cache/
 .DS_Store
+dify.exe
+*.difypkg
