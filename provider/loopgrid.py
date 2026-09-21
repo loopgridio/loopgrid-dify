@@ -11,8 +11,8 @@ class LoopGridProvider(ToolProvider):
         try:
             client = LoopGridClient.from_credentials(credentials)
             client.get_json(
-                "/api/v1/decisions",
-                params={"workspace_id": client.workspace_id, "limit": 1},
+                "/api/v1/dashboard",
+                params={"workspace_id": client.workspace_id},
             )
         except (ValueError, LoopGridError) as exc:
             raise ToolProviderCredentialValidationError(str(exc)) from exc
